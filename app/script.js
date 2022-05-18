@@ -18,34 +18,35 @@ calcolare sconto con if eta<18 oppure eta > 65
 sottrarre sconto al prezzo del biglieto pieno
 stampare tutti io dati HTML */
 
-const kmPrice = 0.21;
+const billToKm = 0.21
 const discount20 = 0.8;
 const discount40 = 0.6;
 
-const notValidKmMessage = "Il valore inserito non è valida, inserire un numero" 
-const notValidAgeMessage = "L'età inserita non è valida, inserire un numero" 
-const dataInsertNotValid = "Valore non dichiarato"
+/*ottengo dati utenti */
 
-userAge = prompt ("Inserire età del viaggiatore")
+const userAgeText = prompt ("Inserire età del viaggiatore")
+const userAge = parseInt (userAgeText)
+const kmToBill = prompt ("Inserire i Km della tratta desiderata");
 
-if ((userAge < 0) || isNaN(userAge) || (userAge === "")) {
-    alert(notValidAgeMessage)
-}
+/* calcolo il prezzo */
 
-kmToBill = prompt ("Inserire i Km della tratta desiderata")
-
-if ((kmToBill < 0) || isNaN(kmToBill) || (kmToBill === " ")) {
-    alert(notValidKmMessage)
-    kmToBill = dataNotInsert
-}
-
-let totalPrice = kmPrice * kmToBill
+let totalPrice = kmToBill * billToKm
 
 if (userAge < 18) {
-    finalPrice = totalPrice * discount20
+    totalPrice = totalPrice * discount20
 } else if (userAge > 65) {
-    finalPrice = totalPrice * discount40
-} else {
-    finalPrice = totalPrice
+    totalPrice = totalPrice * discount40
 }
+
+const spanPrice = document.getElementById("prezzo")
+
+spanPrice.innerHTML= totalPrice
+
+
+const spanAge = document.getElementById("agenumber")
+
+spanAge.innerHTML= userAge
+
+
+console.log(totalPrice)
 
